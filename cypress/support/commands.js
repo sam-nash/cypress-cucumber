@@ -45,7 +45,7 @@ Cypress.Commands.add('isInViewPort', element => {
     })
   })
 
-  //Command to create a fixture file 
+  //Command to create a fixture file data
   Cypress.Commands.add('generateFixture', () => {
     const faker = require('@faker-js/faker')
     cy.writeFile('cypress/fixtures/testData.json', {
