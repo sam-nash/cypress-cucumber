@@ -1,0 +1,26 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "Cypress tests",
+  "main": "index.js",
+  "scripts": {
+    "cyp": "cypress open",
+    "cyc": "cypress run --browser chrome",
+    "cyf": "cypress run --browser firefox",
+    "cye": "cypress run --browser edge",
+    "cy": "cypress run --record --key 663b7174-c681-4a4d-9350-bedc414fd8e4",
+    "smoke": "cypress run NO_COLOR=1 --browser chrome:stable --spec cypress/e2e/component/*.js"
+  },
+  "keywords": [
+    "cypress"
+  ],
+  "author": "Sam Nittala",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^10.9.0",
+    "cypress-mochawesome-reporter": "^3.2.0"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^7.5.0"
+  }
+}
