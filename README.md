@@ -1,2 +1,2 @@
 # Cypress
-Cypress Code Samples
+## Cypress Code Samples
