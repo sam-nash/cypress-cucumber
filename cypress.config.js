@@ -1,30 +1,26 @@
-const { defineConfig } = require("cypress")
-
-
+const { defineConfig } = require('cypress')
+const AWS = require('aws-sdk')
+AWS.config.update({ region: process.env.AWS_REGION || 'us-east-1' })
+const s3 = new AWS.S3()
 module.exports = defineConfig({
   chromeWebSecurity: false,
-  includeShadowDom: true,
-  defaultCommandTimeout: 50000,
-  taskTimeout: 80000,
-  restartBrowserBetweenSpecFiles: true,
-  pageLoadTimeout: 40000,
-  hideXHR: false,
-  failOnStatusCode: false,
-  video: false,
-  width: 1920,
-  height: 1080,
-  retries: {
-    runMode: 1,
-    openMode: 0,
-  },
-  screenshotsFolder: 'cypress/screenshots',
-  videosFolder: 'cypress/videos',
+  username: 'nsavi',
   e2e: {
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
-
+      on('task', {
+        // deconstruct the individual properties
+        run() {
+          try {
+            const data = s3.listObjectsV2({Bucket: 'samtestnash' }).promise()
+            console.log(data);
+            return data; // For unit tests.
+          } catch (err) {
+            console.log("Error", err);
+          }
+        },
+      })
     },
-    baseUrl: 'https://automationpractice.com'
-  }
+    baseUrl: 'https://www.saucedemo.com/',
+    supportFile: false,
+  },
 })
