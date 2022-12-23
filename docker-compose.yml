@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  # Cypress 8.5.0 container to run Cypress tests using Chrome browser version 94.0.4606.61 
+  cypress-chrome:
+    environment:
+      - PATH=/usr/local/bin:$PATH
+    image: "nsavi/cypress:8.5.0"
+    command: ["--browser", "chrome"]
+    working_dir: /test
+    volumes:
+      - ./:/test
+
+  # Cypress 8.5.0 container to run Cypress tests using Firefox browser version 93.0
+  cypress-firefox:
+    image: "nsavi/cypress:8.5.0"
+    command: ["--browser",  "firefox"]
+    environment:
+      - DEBUG=cypress:server:browsers:firefox-util,cypress:server:util:process_profiler
+    working_dir: /test
+    volumes:
+      - ./:/test
+
+  # Cypress 8.5.0 container to run Cypress tests using Edge browser
+  ms-edge:
+    image: "nsavi/cypress:8.5.0"
+    command: ["--browser", "edge"]
+    working_dir: /test
+    volumes:
+      - ./:/test
