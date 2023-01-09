@@ -2,3 +2,5 @@ cypress/e2e/apiTests.cy.js
 cypress/.DS_Store
 cypress/e2e/.DS_Store
 .DS_Store
+node_modules
+cypress/wip
