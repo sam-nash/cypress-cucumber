@@ -2,10 +2,14 @@
 
 ## Cypress Code Samples
 
+### Pre - Requisites
+1. Generate a token for accessing this api and store this in the *cypress.env.json* file at the root of the project folder.
+2. Do not checkin this file to the repo. Use your CICD pipeline to auto generate this file for you each time.
+
 ### Test Structure
 1. Test Data : cypress/fixtures/ - js functions that return the test data(request json object & response attributes)
 2. Cypress commands : To create a reusable request function with the necessary cypress commands like cy.request. Hides the implementation details from the actual test. Helps keep the code clean with less information
-3. Assertions : That compare and verify the expected response with the actual.
+3. Assertions : That compare and verify the expected response with the actual.\
 
 #### POST Method
 
