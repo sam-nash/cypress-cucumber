@@ -34,10 +34,11 @@ if (Cypress.config('hideXHR')) {
 }
 
 
-afterEach(function() {
-   cy.log(this.currentTest.state + this.currentTest.title+ this.currentTest.body + this.currentTest.parent.title + this.currentTest.file)
-});
+// afterEach(function() {
+//    cy.log(this.currentTest.state + this.currentTest.title+ this.currentTest.body + this.currentTest.parent.title + this.currentTest.file)
+// });
 
-beforeEach(function(){
-  cy.viewport(1920, 1080)
-})
+//runs before each
+// beforeEach(function(){
+//   cy.viewport(1920, 1080)
+// })
