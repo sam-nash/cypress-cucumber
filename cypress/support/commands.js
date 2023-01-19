@@ -41,10 +41,10 @@ Cypress.Commands.add('isInViewPort', (element) => {
 });
 
 //Command to create a fixture file data
-Cypress.Commands.add('generateFixture', () => {
+Cypress.Commands.add('userData', () => {
   const { faker } = require('@faker-js/faker');
   cy.writeFile('cypress/fixtures/testData.json', {
-    testData: Cypress._.times(20, () => {
+    testData: Cypress._.times(5, () => {
       return {
         name: `${faker.lorem.words(3)}`,
         email: `${faker.internet.email()}`,
@@ -60,7 +60,29 @@ Cypress.Commands.add('createUser', (apiRequest) => {
     body: apiRequest,
     headers: {
       Accept: 'application/json',
-      // 'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + Cypress.env('apiToken'),
+    },
+  });
+});
+
+Cypress.Commands.add('updateUser', (apiRequest) => {
+  cy.request({
+    url: Cypress.config('apiUrl') + 'users' + '/' + apiRequest.id,
+    method: 'PUT',
+    body: apiRequest,
+    headers: {
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + Cypress.env('apiToken'),
+    },
+  });
+});
+
+Cypress.Commands.add('getUser', (userId) => {
+  cy.request({
+    url: Cypress.config('apiUrl') + 'users' + '/' + userId,
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
       Authorization: 'Bearer ' + Cypress.env('apiToken'),
     },
   });

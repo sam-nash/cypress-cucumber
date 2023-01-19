@@ -1,18 +1,39 @@
-import { createUser, createUserStatus } from '../../fixtures/apiPostData'; //import the test data request and the response
-let userCreateRequest = createUser(); //instantiates the request - the result is an array of objects
+//import the test data request and the response
+import { createUser, createUserStatus } from '../../fixtures/apiPostData';
+//instantiates the request - the result is an array of objects
+let userCreateRequest = createUser();
 
-describe('User creation using POST method', () => { //provides a context of the feature/api that is being tested
-  userCreateRequest.userData.forEach((testData) => { //run the code block once per each test data array object
-    it(`${testData.TestCase}`, () => { //this prints the test case name
-      let { TestCase, ExpectedResult, ...apiRequest } = testData; //remove the request atributes that the api does not want
+describe('User creation using POST & verify that the resource is created using GET methods', () => {
+  //provides a context of the feature/api that is being tested
+  userCreateRequest.userData.forEach((testData) => {
+    //run the code block once per each test data array object
+    it(`${testData.TestCase}`, () => {
+      //use the spread operator to assign to apiRequest only the atributes that the api expects
+      let { TestCase, ExpectedResult, ...apiRequest } = testData;
       cy.log(JSON.stringify(apiRequest)); //print the request for debugging
-      cy.createUser(apiRequest).then((apiResponse) => { //post the api request
-        createUserStatus(apiResponse); //verify the exected response status attributes
-        let { id, ...expectedResponse } = apiResponse.body; //remove the id parameter from the response
-        expect(expectedResponse, 'The Response body: ').to.deep.equal( //verify the expected response matches the actual response
-          apiRequest
-        );
-      });
+      //send the api POST request
+      cy.createUser(apiRequest)
+        .then((postResponse) => {
+          //verify the exected response *status* attributes
+          createUserStatus(postResponse);
+          //remove the id parameter from the response
+          let { id, ...expectedResponse } = postResponse.body;
+          //verify the expected response matches the actual response
+          expect(expectedResponse, 'The POST Response body: ').to.deep.equal(
+            apiRequest
+          );
+        })
+        .then((postResponse) => {
+          //send the api GET request
+          cy.getUser(postResponse.body.id).then((getResponse) => {
+            //remove the id parameter from the response
+            let { id, ...expectedResponse } = getResponse.body;
+            //verify the expected response matches the actual response
+            expect(expectedResponse, 'The POST Response body: ').to.deep.equal(
+              apiRequest
+            );
+          });
+        });
     });
   });
 });
