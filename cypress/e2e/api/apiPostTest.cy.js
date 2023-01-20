@@ -3,7 +3,7 @@ import { createUser, createUserStatus } from '../../fixtures/apiPostData';
 //instantiates the request - the result is an array of objects
 let userCreateRequest = createUser();
 
-describe('User creation using POST & verify that the resource is created using GET methods', () => {
+describe('Valid User creation tests using POST & verify that the resource is created using GET methods', () => {
   //provides a context of the feature/api that is being tested
   userCreateRequest.userData.forEach((testData) => {
     //run the code block once per each test data array object
