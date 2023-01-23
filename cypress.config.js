@@ -1,4 +1,21 @@
-const { defineConfig } = require('cypress');
+const { defineConfig } = require("cypress");
+
+const {
+  ListObjectsV2Command,
+  ListObjectsCommand,
+} = require("@aws-sdk/client-s3");
+const { S3Client } = require("@aws-sdk/client-s3");
+const s3Client = new S3Client({ region: "ap-southeast-2" });
+
+//AWS List S3 Objects
+async function listObjects(params) {
+  try {
+    const data = await s3Client.send(new ListObjectsV2Command(params));
+    return data.Contents;
+  } catch (err) {
+    console.log("If there is an Error, log the error on the console", err);
+  }
+}
 
 module.exports = defineConfig({
   chromeWebSecurity: false,
@@ -16,21 +33,16 @@ module.exports = defineConfig({
   },
   e2e: {
     setupNodeEvents(on, config) {
-      // on('task', {
-      //   // deconstruct the individual properties
-      //   run() {
-      //     try {
-      //       const data = s3.listObjectsV2({Bucket: 'samtestnash' }).promise()
-      //       console.log(data);
-      //       return data; // For unit tests.
-      //     } catch (err) {
-      //       console.log("Error", err);
-      //     }
-      //   },
-      // })
+      on("task", {
+        listAWSS3Objects(params) {
+          return new Promise(async (res, rej) => {
+            res(listObjects(params));
+          });
+        },
+      });
     },
-    baseUrl: 'https://automationpractice.com',
-    apiUrl: 'https://gorest.co.in/public/v2/',
-    supportFile: 'cypress/support/e2e.js',
+    baseUrl: "https://automationpractice.com",
+    apiUrl: "https://gorest.co.in/public/v2/",
+    supportFile: "cypress/support/e2e.js",
   },
 });
