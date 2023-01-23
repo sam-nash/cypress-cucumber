@@ -2,7 +2,18 @@ const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   chromeWebSecurity: false,
-  username: 'nsavi',
+  includeShadowDom: true,
+  defaultCommandTimeout: 50000,
+  taskTimeout: 80000,
+  restartBrowserBetweenSpecFiles: true,
+  pageLoadTimeout: 40000,
+  hideXHR: false,
+  failOnStatusCode: false,
+  video: false,
+  retries: {
+    runMode: 1,
+    openMode: 0,
+  },
   e2e: {
     setupNodeEvents(on, config) {
       // on('task', {
@@ -18,7 +29,7 @@ module.exports = defineConfig({
       //   },
       // })
     },
-    baseUrl: 'https://www.saucedemo.com/',
+    baseUrl: 'https://automationpractice.com',
     apiUrl: 'https://gorest.co.in/public/v2/',
     supportFile: 'cypress/support/e2e.js',
   },
