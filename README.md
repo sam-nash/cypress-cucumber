@@ -4,8 +4,11 @@
 
 ### Pre - Requisites
 
-1. Generate a token for accessing this api and store this in the _cypress.env.json_ file at the root of the project folder.
-2. Do not checkin this file to the repo. Use your CICD pipeline to auto generate this file for you each time.
+1. git clone https://github.com/sam-nash/Cypress.git
+2. cd your_project
+3. npm i
+5. Generate a token for accessing this api and store this in the _cypress.env.json_ file at the root of the project folder.
+6. Do not checkin this file to the repo. Use your CICD pipeline to auto generate this file for you each time.
 
 ### Test Structure
 
