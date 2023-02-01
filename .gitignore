@@ -5,3 +5,7 @@ cypress/e2e/.DS_Store
 node_modules
 cypress/wip
 cypress.env.json
+cypress/videos
+cypress/screenshots
+cypress/fixtures/S3Download.json
+cypress/e2e/localTests
