@@ -1,6 +1,6 @@
 const path = require('path');
 
-let testFile1 = 'cypress/fixtures/apiPostData.js',
+const testFile1 = 'cypress/fixtures/apiPostData.js',
   testFile2 = 'cypress/fixtures/putTest.json',
   bucket = 'samtestnash';
 

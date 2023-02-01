@@ -101,7 +101,7 @@ Cypress.Commands.add('S3ListObjects', (params) => {
   cy.task('listObjects', params);
 });
 
-Cypress.Commands.add('S3DownloadObject', (params) => {
+Cypress.Commands.add('S3GetObject', (params) => {
   cy.task('getObject', params);
 });
 
