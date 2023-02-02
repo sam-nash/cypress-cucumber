@@ -93,16 +93,16 @@ Cypress.Commands.add('getUser', (userId) => {
   });
 });
 
-Cypress.Commands.add('S3PutObject', (params) => {
-  cy.task('putObject', params);
+Cypress.Commands.add('S3PutObject', (file, bucketName, prefix, delimiter) => {
+  cy.task('putObject', { file, bucketName, prefix, delimiter });
 });
 
-Cypress.Commands.add('S3ListObjects', (params) => {
-  cy.task('listObjects', params);
+Cypress.Commands.add('S3ListObjects', (bucketName, prefix, delimiter) => {
+  cy.task('listObjects', { bucketName, prefix, delimiter });
 });
 
-Cypress.Commands.add('S3GetObject', (params) => {
-  cy.task('getObject', params);
+Cypress.Commands.add('S3GetObject', (key, bucketName) => {
+  cy.task('getObject', { key, bucketName });
 });
 
 Cypress.Commands.add('S3DeleteObject', (params) => {

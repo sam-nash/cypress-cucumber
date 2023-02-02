@@ -2,6 +2,34 @@
 
 ## Cypress UI Test Samples
 
+## Cypress AWS Test Samples
+
+The code samples in cypress.config.js and awsServices.cy.js demonstrate how to make use of Cypress to upload/download and delete objects from an S3 bucket.
+
+### Pre - Requisites
+
+**S3**
+
+1. An S3 bucket is pre-created in a region of your choice.
+2. AWS Credentials are configured on your machine.
+
+   [Refer AWS Documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
+
+Example :
+
+> cd /Users/username/.aws
+
+```
+username@Air .aws % ls -al
+drwxr-xr-x   4 username  staff   128 24 Oct 22:47 .
+drwxr-xr-x+ 50 username  staff  1600  2 Feb 10:23 ..
+-rw-------   1 username  staff    70 24 Oct 22:47 config
+-rw-------   1 username  staff   116 23 Oct 22:08 credentials
+```
+
+All the aws sdk code has been referenced from
+[AWS SDK for JavaScript V3 code examples](https://docs.amazonaws.cn/en_us/sdk-for-javascript/v3/developer-guide/javascript_code_examples.html).
+
 ## Cypress API Test Samples
 
 Generate & use varied test data for different test scenarios.
@@ -47,5 +75,5 @@ For this, we perform the following :
 4. Capture the getResponse and verify the response with the postRequest(without 'id').
 
 Because we have to test if the api can accept all the different values, we send variations of the request like a different 'gender' and 'status'.
-The above test scenario can be broken up into 4 different test cases(scripts).
+The above test scenario can be broken up into 4 different test cases(scripts) by modifying the corresponding test data object
 We achieve this by using the _createUser()_ function which creates different combinations of requests using faker.
