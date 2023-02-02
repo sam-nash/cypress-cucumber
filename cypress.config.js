@@ -1,4 +1,11 @@
 const { defineConfig } = require('cypress');
+const {
+  listObjects,
+  putObject,
+  getObject,
+  delObj,
+  delObjs,
+} = require('./cypress/utils/awsServices.js');
 
 module.exports = defineConfig({
   chromeWebSecurity: false,
@@ -16,18 +23,29 @@ module.exports = defineConfig({
   },
   e2e: {
     setupNodeEvents(on, config) {
-      // on('task', {
-      //   // deconstruct the individual properties
-      //   run() {
-      //     try {
-      //       const data = s3.listObjectsV2({Bucket: 'samtestnash' }).promise()
-      //       console.log(data);
-      //       return data; // For unit tests.
-      //     } catch (err) {
-      //       console.log("Error", err);
-      //     }
-      //   },
-      // })
+      on('task', {
+        listObjects({ bucketName, prefix, delimiter }) {
+          return new Promise(async (res, rej) => {
+            res(listObjects(bucketName, prefix, delimiter));
+          });
+        },
+        putObject({ file, bucketName, prefix, delimiter }) {
+          return putObject(file, bucketName, prefix, delimiter);
+        },
+        getObject({ key, bucketName }) {
+          return getObject(key, bucketName);
+        },
+        deleteObject(params) {
+          return delObj(params);
+        },
+        deleteObjects(bucket) {
+          return delObjs(bucket);
+        },
+        log(message) {
+          console.log(message);
+          return null;
+        },
+      });
     },
     baseUrl: 'https://automationpractice.com',
     apiUrl: 'https://gorest.co.in/public/v2/',

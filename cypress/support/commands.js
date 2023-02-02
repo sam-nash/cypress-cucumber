@@ -40,6 +40,11 @@ Cypress.Commands.add('isInViewPort', (element) => {
   });
 });
 
+//Replace cy.log with the custom command as cy.log sometimes doesn't write ouput to console
+Cypress.Commands.overwrite('log', (subject, message) =>
+  cy.task('log', message)
+);
+
 //Command to create a fixture file data
 Cypress.Commands.add('userData', () => {
   const { faker } = require('@faker-js/faker');
@@ -86,4 +91,24 @@ Cypress.Commands.add('getUser', (userId) => {
       Authorization: 'Bearer ' + Cypress.env('apiToken'),
     },
   });
+});
+
+Cypress.Commands.add('S3PutObject', (file, bucketName, prefix, delimiter) => {
+  cy.task('putObject', { file, bucketName, prefix, delimiter });
+});
+
+Cypress.Commands.add('S3ListObjects', (bucketName, prefix, delimiter) => {
+  cy.task('listObjects', { bucketName, prefix, delimiter });
+});
+
+Cypress.Commands.add('S3GetObject', (key, bucketName) => {
+  cy.task('getObject', { key, bucketName });
+});
+
+Cypress.Commands.add('S3DeleteObject', (params) => {
+  cy.task('deleteObject', params);
+});
+
+Cypress.Commands.add('S3DeleteObjects', (bucket) => {
+  cy.task('deleteObjects', bucket);
 });

@@ -17,12 +17,10 @@
   "author": "Sam Nittala",
   "license": "ISC",
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.254.0",
     "@faker-js/faker": "^7.6.0",
+    "aws-sdk": "^2.1299.0",
     "cypress": "^12.3.0",
     "cypress-mochawesome-reporter": "^3.2.0"
-  },
-  "dependencies": {
-    "@aws-sdk/client-s3": "^3.245.0",
-    "aws-sdk": "^2.1291.0"
   }
 }

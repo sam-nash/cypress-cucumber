@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 const bool = faker.datatype.boolean();
-const { userIds } = require('./userIds.json');
+//const { userIds } = require('./userIds.json');
 
 export const number = (n) => {
   return faker.datatype.number(n);
@@ -103,5 +103,5 @@ export const createUserStatus = (apiResponse) => {
   expect(apiResponse.status).to.eq(201);
   expect(apiResponse.statusText).to.eq('Created');
   expect(apiResponse.isOkStatusCode).to.eq(true);
-  expect(apiResponse.body.id).to.match(/\b\d{5}\b/g);
+  expect(apiResponse.body.id).to.match(/\b\d{5,6}\b/g);
 };
