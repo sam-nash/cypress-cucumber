@@ -112,3 +112,11 @@ Cypress.Commands.add('S3DeleteObject', (params) => {
 Cypress.Commands.add('S3DeleteObjects', (bucket) => {
   cy.task('deleteObjects', bucket);
 });
+
+Cypress.Commands.add('kafkaProduce', (message, topic) => {
+  cy.task('produceMessage', { message, topic });
+});
+
+Cypress.Commands.add('kafkaConsume', (topic) => {
+  cy.task('consumeMessage', topic);
+});

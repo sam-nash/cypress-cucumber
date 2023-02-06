@@ -1,6 +1,6 @@
-version: '3.9'
+version: "3.9"
 services:
-  # Cypress 8.5.0 container to run Cypress tests using Chrome browser version 94.0.4606.61 
+  # Cypress 8.5.0 container to run Cypress tests using Chrome browser version 94.0.4606.61
   cypress-chrome:
     environment:
       - PATH=/usr/local/bin:$PATH
@@ -13,7 +13,7 @@ services:
   # Cypress 8.5.0 container to run Cypress tests using Firefox browser version 93.0
   cypress-firefox:
     image: "nsavi/cypress:8.5.0"
-    command: ["--browser",  "firefox"]
+    command: ["--browser", "firefox"]
     environment:
       - DEBUG=cypress:server:browsers:firefox-util,cypress:server:util:process_profiler
     working_dir: /test

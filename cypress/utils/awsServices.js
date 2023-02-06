@@ -1,15 +1,15 @@
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 const {
   ListObjectsV2Command,
   ListObjectsCommand,
   PutObjectCommand,
   DeleteObjectCommand,
   S3Client,
-} = require('@aws-sdk/client-s3');
+} = require("@aws-sdk/client-s3");
 
 const s3Client = new S3Client();
-const AWS = require('aws-sdk');
+const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
 
 // function to list all objects in a AWS S3 bucket
@@ -17,14 +17,14 @@ const s3 = new AWS.S3();
 const listObjects = async (bucketName, prefix, delimiter) => {
   const listParams = {
     Bucket: bucketName,
-    Prefix: prefix ?? '',
-    Delimiter: delimiter ?? '',
+    Prefix: prefix ?? "",
+    Delimiter: delimiter ?? "",
   };
   try {
     const data = await s3Client.send(new ListObjectsV2Command(listParams));
     return data.Contents;
   } catch (err) {
-    console.log('If there is an Error, log the error on the console', err);
+    console.log("If there is an Error, log the error on the console", err);
   }
 };
 
@@ -34,15 +34,15 @@ async function putObject(file, bucketName, prefix, delimiter) {
   const filestream = fs.createReadStream(file);
   const uploadParams = {
     Bucket: bucketName,
-    Key: `${prefix ?? ''}${path.basename(file)}`,
+    Key: `${prefix ?? ""}${path.basename(file)}`,
     Body: filestream,
-    Delimiter: delimiter ?? '',
+    Delimiter: delimiter ?? "",
   };
   try {
     const uploadData = await s3Client.send(new PutObjectCommand(uploadParams));
     return uploadData;
   } catch (err) {
-    console.log('There is an Error', err);
+    console.log("There is an Error", err);
   }
 }
 
@@ -55,7 +55,7 @@ async function getObject(key, bucketName) {
   };
   try {
     const data = await s3.getObject(getParams).promise();
-    return data.Body.toString('utf-8');
+    return data.Body.toString("utf-8");
   } catch (err) {
     return err;
   }
@@ -67,7 +67,7 @@ async function delObj(params) {
     const data = await s3Client.send(new DeleteObjectCommand(params));
     return data;
   } catch (err) {
-    console.log('There is an Error', err);
+    console.log("There is an Error", err);
   }
 }
 
@@ -84,10 +84,10 @@ async function delObjs(bucket) {
         })
       );
     }
-    console.log('All Objects were successfully deleted.');
+    console.log("All Objects were successfully deleted.");
     return data;
   } catch (err) {
-    console.log('Some Error', err);
+    console.log("Some Error", err);
   }
 }
 

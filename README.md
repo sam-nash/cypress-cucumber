@@ -39,8 +39,8 @@ Generate & use varied test data for different test scenarios.
 1. git clone https://github.com/sam-nash/Cypress.git
 2. cd your_project
 3. npm i
-5. Generate a token for accessing this api and store this in the _cypress.env.json_ file at the root of the project folder.
-6. Do not checkin this file to the repo. Use your CICD pipeline to auto generate this file for you each time.
+4. Generate a token for accessing this api and store this in the _cypress.env.json_ file at the root of the project folder.
+5. Do not checkin this file to the repo. Use your CICD pipeline to auto generate this file for you each time.
 
 ##### Test Data generator functions
 

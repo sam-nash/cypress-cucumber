@@ -14,25 +14,24 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import 'cypress-mochawesome-reporter/register';
-if (Cypress.config('hideXHR')) {
-    const app = window.top;
-  
-    if (!app.document.head.querySelector('[data-hide-command-log-request]')) {
-      const style = app.document.createElement('style');
-      style.innerHTML =
-        '.command-name-request, .command-name-xhr, .command-name-uncaught-exception { display: none }';
-      style.setAttribute('data-hide-command-log-request', '');
-  
-      app.document.head.appendChild(style);
-    }
-}
+import "cypress-mochawesome-reporter/register";
+if (Cypress.config("hideXHR")) {
+  const app = window.top;
 
+  if (!app.document.head.querySelector("[data-hide-command-log-request]")) {
+    const style = app.document.createElement("style");
+    style.innerHTML =
+      ".command-name-request, .command-name-xhr, .command-name-uncaught-exception { display: none }";
+    style.setAttribute("data-hide-command-log-request", "");
+
+    app.document.head.appendChild(style);
+  }
+}
 
 // afterEach(function() {
 //    cy.log(this.currentTest.state + this.currentTest.title+ this.currentTest.body + this.currentTest.parent.title + this.currentTest.file)

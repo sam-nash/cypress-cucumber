@@ -6,6 +6,7 @@ const {
   delObj,
   delObjs,
 } = require('./cypress/utils/awsServices.js');
+const { produce, consume } = require('./cypress/utils/kafka/kafkaProducer');
 
 module.exports = defineConfig({
   chromeWebSecurity: false,
@@ -40,6 +41,17 @@ module.exports = defineConfig({
         },
         deleteObjects(bucket) {
           return delObjs(bucket);
+        },
+        produceMessage({ message, topic }) {
+          return new Promise(async (resolve) => {
+            resolve(produce(message, topic));
+          });
+        },
+        consumeMessage(topic) {
+          return new Promise(async (resolve) => {
+            const res = await consume(topic);
+            resolve(res);
+          });
         },
         log(message) {
           console.log(message);

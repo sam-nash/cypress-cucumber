@@ -9,7 +9,8 @@
     "cyf": "cypress run --browser firefox",
     "cye": "cypress run --browser edge",
     "cy": "cypress run --record --key 663b7174-c681-4a4d-9350-bedc414fd8e4",
-    "smoke": "cypress run NO_COLOR=1 --browser chrome:stable --spec cypress/e2e/component/*.js"
+    "smoke": "cypress run NO_COLOR=1 --browser chrome:stable --spec cypress/e2e/component/*.js",
+    "prettier": "npx prettier --write ."
   },
   "keywords": [
     "cypress"
@@ -22,5 +23,8 @@
     "aws-sdk": "^2.1299.0",
     "cypress": "^12.3.0",
     "cypress-mochawesome-reporter": "^3.2.0"
+  },
+  "dependencies": {
+    "prettier": "^2.8.3"
   }
 }

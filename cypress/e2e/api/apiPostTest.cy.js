@@ -1,9 +1,9 @@
 //import the test data request and the response
-import { createUser, createUserStatus } from '../../fixtures/apiPostData';
+import { createUser, createUserStatus } from "../../fixtures/apiPostData";
 //instantiates the request - the result is an array of objects
 let userCreateRequest = createUser();
 
-describe('Valid User creation tests using POST & verify that the resource is created using GET methods', () => {
+describe("Valid User creation tests using POST & verify that the resource is created using GET methods", () => {
   //provides a context of the feature/api that is being tested
   userCreateRequest.userData.forEach((testData) => {
     //run the code block once per each test data array object
@@ -19,7 +19,7 @@ describe('Valid User creation tests using POST & verify that the resource is cre
           //remove the id parameter from the response
           let { id, ...expectedResponse } = postResponse.body;
           //verify the expected response matches the actual response
-          expect(expectedResponse, 'The POST Response body: ').to.deep.equal(
+          expect(expectedResponse, "The POST Response body: ").to.deep.equal(
             apiRequest
           );
         })
@@ -29,7 +29,7 @@ describe('Valid User creation tests using POST & verify that the resource is cre
             //remove the id parameter from the response
             let { id, ...expectedResponse } = getResponse.body;
             //verify the expected response matches the actual response
-            expect(expectedResponse, 'The POST Response body: ').to.deep.equal(
+            expect(expectedResponse, "The POST Response body: ").to.deep.equal(
               apiRequest
             );
           });
