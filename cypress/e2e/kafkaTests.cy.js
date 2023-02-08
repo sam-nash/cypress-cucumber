@@ -1,6 +1,5 @@
 const { faker } = require('@faker-js/faker');
-const { orderSummary } = require('../utils/kafka/orderSummary');
-const { responseObject } = require('../utils/utils');
+const { orderSummary } = require('../utils/orderSummary');
 let orderData, orderConfirmation, topic;
 
 before(() => {
@@ -18,7 +17,7 @@ before(() => {
 
 it('Sends data to the Kafka producer', () => {
   //Calls the Kafka Producer which takes the user order input data
-  cy.log('The Customer Order is :' + JSON.stringify(orderData));
+  cy.log('The Customer Order is : ' + JSON.stringify(orderData));
   cy.kafkaProduce(orderConfirmation, topic).then(() => {
     cy.log('Success! Order Sent for processing...');
   });
@@ -27,8 +26,21 @@ it('Sends data to the Kafka producer', () => {
 it('Reads data from the Kafka consumer', () => {
   //Calls the Kafka Consumer which reads the user order confirmation data
   cy.kafkaConsume(topic).then((response) => {
-    const responseObject = (orderData.transactionId) =>
-    { response.find((element) => element.transactionId === orderData.transactionId); }
-    cy.log(myResp);
+    cy.log(response);
+    const expectedResponseObject = response.find(
+      (object) => object.transactionId === orderData.transactionId
+    );
+    cy.log(expectedResponseObject);
+    expect(orderData.customerName).to.eq(
+      expectedResponseObject.customerDetails.customerName
+    );
+    expect(orderData.customerEmail).to.eq(
+      expectedResponseObject.customerDetails.customerEmail
+    );
+    expect(orderData.item).to.eq(expectedResponseObject.itemDetails.name);
+    expect(orderData.quantity).to.eq(
+      expectedResponseObject.itemDetails.quantity
+    );
+    expect(expectedResponseObject.orderNumber).to.match(/\b\d{6}\b/g);
   });
 });

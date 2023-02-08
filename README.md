@@ -42,13 +42,24 @@ Generate & use varied test data for different test scenarios.
 4. Generate a token for accessing this api and store this in the _cypress.env.json_ file at the root of the project folder.
 5. Do not checkin this file to the repo. Use your CICD pipeline to auto generate this file for you each time.
 
-##### Test Data generator functions
+#### Schema Tests
+
+1. Install "ajv" & "number-precision"
+
+   ```
+   npm i --save-dev ajv number-precision
+
+   ```
+
+2.
+
+#### <u> Test Data generator functions</u>
 
 -- createUser() function returns an array of requests so that multiple combinations of data can be tested.
 -- createUserStatus() function takes the api response data as the function argument & validates various response attributes like status, statusText, isOkStatusCode and performs a regex match on the id from the response body.
 -- The response body(without the 'id') is then finally asserted (deep equals) with the original request body.
 
-### Test Structure
+#### Test Structure
 
 1. Test Data : cypress/fixtures/ - js functions that return the test data(request json object & response attributes)
 2. Cypress commands : To create reusable request functions with the relevant cypress commands like cy.request. Hides the implementation details from the actual test. Helps keep the code clean with less information.

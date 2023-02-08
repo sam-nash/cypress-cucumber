@@ -6,7 +6,7 @@ const {
   delObj,
   delObjs,
 } = require('./cypress/utils/awsServices.js');
-const { produce, consume } = require('./cypress/utils/kafka/kafkaProducer');
+const { produce, consume } = require('./cypress/utils/kafka');
 
 module.exports = defineConfig({
   chromeWebSecurity: false,
