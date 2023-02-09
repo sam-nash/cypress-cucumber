@@ -62,6 +62,9 @@ drwxr-xr-x+ 50 username  staff  1600  2 Feb 10:23 ..
 All the aws sdk code has been referenced from
 [AWS SDK for JavaScript V3 code examples](https://docs.amazonaws.cn/en_us/sdk-for-javascript/v3/developer-guide/javascript_code_examples.html).
 
+Read 📚 this [tutorial](https://link.medium.com/ZsRYkUGehxb) to learn how this is done.
+
+
 ## Cypress API Test Samples
 
 Generate & use varied test data for different test scenarios.
