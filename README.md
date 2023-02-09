@@ -1,8 +1,40 @@
 # Cypress
 
-## Cypress UI Test Samples
+## Installation and Running
 
-## Cypress AWS Test Samples
+**Install**
+
+```
+npm i --save-dev cypress@latest
+```
+
+**Open in Cypress Test Runner(GUI)**
+
+```
+npx cypress open
+```
+
+**Run tests in headless mode**
+
+> All the tests in the e2e folder
+
+```
+npx cypress run
+```
+
+> Specific tests
+
+```
+npx cypress run --spec /path/to/the test(s)
+
+example : npx cypress run --spec cypress/e2e/api/apiPostTest.cy.js
+```
+
+## UI Test Samples
+
+[TBD]
+
+## Amazon Web Servcies Test Samples
 
 The code samples in cypress.config.js and awsServices.cy.js demonstrate how to make use of Cypress to upload/download and delete objects from an S3 bucket.
 
@@ -51,8 +83,7 @@ Generate & use varied test data for different test scenarios.
 
    ```
 
-2.
-
+#### API Tests
 #### <u> Test Data generator functions</u>
 
 -- createUser() function returns an array of requests so that multiple combinations of data can be tested.

@@ -1,12 +1,12 @@
-const { Kafka, logLevel } = require('kafkajs');
+const { Kafka, logLevel } = require("kafkajs");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // a single broker instance that we connect to
-const brokers = ['localhost:9092'];
+const brokers = ["localhost:9092"];
 
 //Producer code
 const produce = async (message, topic) => {
   const kafka = new Kafka({
-    clientId: 'test-' + topic,
+    clientId: "test-" + topic,
     brokers,
     logLevel: logLevel.NOTHING,
   });
@@ -33,12 +33,12 @@ const produce = async (message, topic) => {
 const consume = async (topic) => {
   let responseData = [];
   const kafka = new Kafka({
-    clientId: 'test-' + topic,
+    clientId: "test-" + topic,
     brokers,
     logLevel: logLevel.NOTHING,
   });
   const consumer = kafka.consumer({
-    groupId: 'group-' + topic,
+    groupId: "group-" + topic,
   });
   await consumer.connect();
   await consumer.subscribe({

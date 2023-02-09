@@ -1,5 +1,5 @@
-const { faker } = require('@faker-js/faker');
-const { orderSummary } = require('../utils/orderSummary');
+const { faker } = require("@faker-js/faker");
+const { orderSummary } = require("../utils/orderSummary");
 let orderData, orderConfirmation, topic;
 
 before(() => {
@@ -7,23 +7,23 @@ before(() => {
   orderData = {
     customerName: faker.name.firstName(),
     customerEmail: faker.internet.email(),
-    item: 'apple',
-    quantity: '2',
+    item: "apple",
+    quantity: "2",
     transactionId: faker.datatype.uuid(),
   };
-  topic = 'orders';
+  topic = "orders";
   orderConfirmation = orderSummary(orderData); //process the order
 });
 
-it('Sends data to the Kafka producer', () => {
+it("Sends data to the Kafka producer", () => {
   //Calls the Kafka Producer which takes the user order input data
-  cy.log('The Customer Order is : ' + JSON.stringify(orderData));
+  cy.log("The Customer Order is : " + JSON.stringify(orderData));
   cy.kafkaProduce(orderConfirmation, topic).then(() => {
-    cy.log('Success! Order Sent for processing...');
+    cy.log("Success! Order Sent for processing...");
   });
 });
 
-it('Reads data from the Kafka consumer', () => {
+it("Reads data from the Kafka consumer", () => {
   //Calls the Kafka Consumer which reads the user order confirmation data
   cy.kafkaConsume(topic).then((response) => {
     cy.log(response);
