@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 const bool = faker.datatype.boolean();
 //const { userIds } = require('./userIds.json');
 
@@ -11,33 +11,33 @@ export const createUser = () => {
     userData: [
       {
         TestCase:
-          "Verify that an active male user can be created with valid details",
+          'Verify that an active male user can be created with valid details',
         name: `${faker.name.firstName()}`,
-        gender: "male",
+        gender: 'male',
         email: `${faker.internet.email()}`,
-        status: "active",
+        status: 'active',
       },
       {
         TestCase:
-          "Verify that an inactive female user can be created with valid details",
+          'Verify that an inactive female user can be created with valid details',
         name: `${faker.name.firstName()}`,
-        gender: "female",
+        gender: 'female',
         email: `${faker.internet.email()}`,
-        status: "inactive",
+        status: 'inactive',
       },
       {
-        TestCase: "Verify that an active user can be created with valid name",
+        TestCase: 'Verify that an active user can be created with valid name',
         name: `${faker.name.firstName()}`,
         gender: `${faker.name.sexType()}`,
         email: `${faker.internet.email()}`,
-        status: "active",
+        status: 'active',
       },
       {
-        TestCase: "Verify that an active user can be created with valid email",
+        TestCase: 'Verify that an active user can be created with valid email',
         name: `${faker.name.firstName()}`,
         gender: `${faker.name.sexType()}`,
         email: `${faker.internet.email()}`,
-        status: "active",
+        status: 'active',
       },
     ],
   };
@@ -48,13 +48,13 @@ export const updateUser = () => {
   return {
     userData: [
       {
-        TestCase: "Verify that gender details of an user can be updated",
+        TestCase: 'Verify that gender details of an user can be updated',
         id: userIds[0],
-        gender: "female",
+        gender: 'female',
         ExpectedResult: {
           id: userIds[0],
           name: test.userData[0].name,
-          gender: "female",
+          gender: 'female',
           email: createUser().userData[0].email,
           status: createUser().userData[0].status,
         },
@@ -101,7 +101,7 @@ export const updateUser = () => {
 
 export const createUserStatus = (apiResponse) => {
   expect(apiResponse.status).to.eq(201);
-  expect(apiResponse.statusText).to.eq("Created");
+  expect(apiResponse.statusText).to.eq('Created');
   expect(apiResponse.isOkStatusCode).to.eq(true);
   expect(apiResponse.body.id).to.match(/\b\d{5,6}\b/g);
 };

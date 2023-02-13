@@ -24,6 +24,7 @@
     "aws-sdk": "^2.1299.0",
     "cypress": "^12.5.1",
     "cypress-mochawesome-reporter": "^3.2.0",
+    "kafkajs": "^2.2.3",
     "number-precision": "^1.6.0"
   },
   "dependencies": {
