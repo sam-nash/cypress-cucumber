@@ -1,0 +1,53 @@
+// ***********************************************
+// This example commands.js shows you how to
+// create various custom commands and overwrite
+// existing commands.
+//
+// For more comprehensive examples of custom
+// commands please read more here:
+// https://on.cypress.io/custom-commands
+// ***********************************************
+//
+//
+// -- This is a parent command --
+// Cypress.Commands.add('login', (email, password) => { ... })
+//
+//
+// -- This is a child command --
+// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
+//
+//
+// -- This is a dual command --
+// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
+//
+//
+// -- This will overwrite an existing command --
+// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+/* These custom commands abstract the cy.request implementation.
+They use the endPoint Url from the cypress.config.js and the apiKey from the cypress.env.json
+*/
+
+// The createStation command takes an optional apiKey and mandatory request body as inputs
+
+Cypress.Commands.add("createStation", (apiKey, requestBody) => {
+  cy.request({
+    method: "POST",
+    url: Cypress.config("baseUrl"),
+    qs: { appid: apiKey ?? Cypress.env("appid") },
+    body: requestBody,
+    headers: { "Content-Type": "application/json" },
+    failOnStatusCode: false,
+  });
+});
+
+// The getStation command takes mandatory id param as path parameter
+
+Cypress.Commands.add("getStation", (stationId) => {
+  cy.request({
+    method: "GET",
+    url: `${Cypress.config("baseUrl")}/${stationId}`,
+    qs: { appid: Cypress.env("appid") },
+    failOnStatusCode: false,
+  });
+});
