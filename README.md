@@ -55,3 +55,4 @@ npm run defaultTest
 ## Test Reports
 
 When the test run completes, the reports are saved in html format at the lcoation `cypress/reports/index.html`
+A sample report has been atatched for reference.)
