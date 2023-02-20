@@ -1,0 +1,5 @@
+node_modules
+cypress/examples
+.DS_STORE
+cypress.env.json
+cypress/reports
