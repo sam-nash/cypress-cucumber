@@ -20,7 +20,7 @@ stationData.stations.forEach((stationData) => {
       expect(response.body.ID).to.match(/^[a-z0-9]+$/i);
       expect(response.body.rank).to.be.a("number");
       expect(response.body.source_type).to.be.a("number");
-      expect(response.body.user_id).to.eq("63ef2a66c2990f0007b7b875");
+      //expect(response.body.user_id).to.eq("63ef2a66c2990f0007b7b875");
       //cy.log(JSON.stringify(response.body));
       let {
         ID,

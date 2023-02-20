@@ -10,6 +10,7 @@
     "step_definitions": "cypress/e2e/apiTests"
   },
   "scripts": {
+    "runAllTests":"npx cypress run",
     "cucumberTest": "npx cypress run --spec cypress/e2e/*.feature",
     "defaultTest": "npx cypress run --spec cypress/default/*.cy.js",
     "prettier": "npx prettier --write ."
