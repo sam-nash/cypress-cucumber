@@ -11,6 +11,7 @@
   },
   "scripts": {
     "cucumberTest": "npx cypress run --spec cypress/e2e/*.feature",
-    "defaultTest": "npx cypress run --spec cypress/default/*.cy.js"
+    "defaultTest": "npx cypress run --spec cypress/default/*.cy.js",
+    "prettier": "npx prettier --write ."
   }
 }
