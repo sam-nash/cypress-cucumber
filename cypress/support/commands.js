@@ -31,10 +31,10 @@ They use the endPoint Url from the cypress.config.js and the apiKey from the cyp
 // The createStation command takes an optional apiKey and mandatory request body as inputs
 
 Cypress.Commands.add("createStation", (apiKey, requestBody) => {
-  cy.request({
+  cy.request({ //it then sends the request to the endpoint url specified in the baseUrl attribute of cypress.config.js with the apiKey and the request body
     method: "POST",
     url: Cypress.config("baseUrl"),
-    qs: { appid: apiKey ?? Cypress.env("appid") },
+    qs: { appid: apiKey ?? Cypress.env("appid") }, //this was done to inject an invalid api key for negative tests. If there is no apiKey sent from the test-it defaults tot he apiKey from the env
     body: requestBody,
     headers: { "Content-Type": "application/json" },
     failOnStatusCode: false,
