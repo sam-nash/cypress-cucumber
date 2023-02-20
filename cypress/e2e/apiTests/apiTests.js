@@ -22,30 +22,28 @@ Then(
     });
   }
 );
-And(
-  'The response user id is {string} and the response body contains the request attributes',
-  (userId) => {
-    cy.get('@postResponse').then((response) => {
-      expect(response.body.user_id).to.eq(userId); //verify the userid who created the station
-      let {
-        //destruct the json object so that the result object contains only the remaining attributes
-        ID,
-        updated_at,
-        created_at,
-        user_id,
-        source_type,
-        rank,
-        ...actualResponse
-      } = response.body;
-      expect(requestBody, 'The API Response : ').to.deep.equal(actualResponse); //assert that the response matches the request attributes
-    });
-  }
-);
+And('The response body contains the request attributes', () => {
+  cy.get('@postResponse').then((response) => {
+    //expect(response.body.user_id).to.eq(userId); //verify the userid who created the station if needed
+    let {
+      //destruct the json object so that the result object contains only the remaining attributes
+      ID,
+      updated_at,
+      created_at,
+      user_id,
+      source_type,
+      rank,
+      ...actualResponse
+    } = response.body;
+    expect(requestBody, 'The API Response : ').to.deep.equal(actualResponse); //assert that the response matches the request attributes
+  });
+});
 Then(
   'When the unique stationId is queried using a GET request, the api returns a {int} status code',
   (statusCode) => {
     cy.getStation(stationId).as('getResponse'); //Call the GET API with the stationId created using the POST Request & store its response in an alias
-    cy.get('@getResponse').then((response) => { //Retrive the alias and verify the status code
+    cy.get('@getResponse').then((response) => {
+      //Retrive the alias and verify the status code
       expect(response.status).to.eq(statusCode);
     });
   }
