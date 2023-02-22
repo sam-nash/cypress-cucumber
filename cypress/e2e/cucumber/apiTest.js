@@ -55,27 +55,7 @@ Then(
   }
 );
 
-//Negative Tests
-// Given('I have the following station data to post:', (dataTable) => {
-//   // Convert the data table to an array of objects with header keys
-//   requestData = dataTable.hashes().map((row) => {
-//     // Convert string representation of numbers and floats to their respective types
-//     Object.keys(row).forEach((key) => {
-//       const value = row[key];
-//       if (!isNaN(value)) {
-//         if (value.includes('.')) {
-//           row[key] = parseFloat(value);
-//         } else {
-//           row[key] = parseInt(value, 10);
-//         }
-//       } else {
-//         row[key] = '';
-//       }
-//     });
-//     return row;
-//   });
-//   cy.wrap(requestData).as('requestData');
-// });
+//Negative Test - Invalid API key
 When(
   'I post the station data request body to the Create Stations API, then I receive a corresponding response statusCode and statusMessage in the response',
   () => {
@@ -85,6 +65,23 @@ When(
 
       cy.createStation(request.apiKey, requestData).then((response) => {
         expect(response.status).to.eq(request.statusCode); //verify the http status code
+        expect(JSON.stringify(response.body)).to.eq(request.statusMessage); //verify the status message
+      });
+    });
+  }
+);
+
+//Negative Test - Invalid JSON attribute values
+When(
+  'I post the station data request body to the Create Stations API, then I receive a corresponding response statusCode and statusMessage in the response',
+  () => {
+    cy.get('@requestData').each((request) => {
+      cy.log(JSON.stringify(request));
+      let { apiKey, statusCode, statusMessage, ...requestData } = request;
+
+      cy.createStation(request.apiKey, requestData).then((response) => {
+        expect(response.status).to.eq(request.statusCode); //verify the http status code
+        expect(JSON.stringify(response.body)).to.eq(request.statusMessage); //verify the status message
       });
     });
   }
