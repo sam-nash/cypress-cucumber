@@ -12,6 +12,27 @@ Install the dependencies on your CI server or local
 npm install
 ```
 
+## Construct - Feature/Test Organization
+
+1. All Feature files must be created with the file name convention name.feature under the cypress/e2e foldern [example: cucumber.feature]
+2. Create a corresponding folder under e2e that has the same name as the feature name above(without .feature) [example : cucumber]
+3. Create/add your cypress spec/feature implementaion under this folder [example : /e2e/cucumber/cypressSpec.cy.js]
+4. Create a <b>cypress.env.json</b> file to store your apiKey & update the apiKey like in the example below.
+   Example :
+
+```
+{ "appid": "<your ApiKey goes here>" }
+```
+
+<b>NOTE</b>> : Let this env file be only local & gitignored. It is a best practice to generate this dynamicaly or store this as an env var in the CI server.
+
+5. <b>cypress.config.js</b> has been pre created and udpated with the required config values for use(contains the API Endpoint URL, Reporting configuration)
+
+### To add your own scenarios and tests
+
+1. Edit the [feature file](cypress/e2e/cucumber.feature) and edit/add more API test scenarios using the Given, When, Then & And construct.
+2. Add the matching tests to the [cucumber.js](cypress/e2e/cucumber/cucumber.js)
+
 ## API Key
 
 The Open Weather use an API Key for Authentication.
@@ -19,18 +40,6 @@ The Open Weather use an API Key for Authentication.
 To generate and use the apiKey in your tests :
 
 1. Register online at [OpenWeather](https://home.openweathermap.org/api_keys) and generate an api key.
-2. Create a <b>cypress.env.json</b> file at the root of your project and update the value to the key <b>appid</b> with the apiKey generated in Step 1.
-
-Example :
-
-```
-{ "appid": "<your ApiKey goes here" }
-```
-
-## To add your own scenarios and tests
-
-1. Edit the [feature file](cypress/e2e/apiTests.feature) and add more API test scenarios using the Given, When, Then & And construct.
-2. Add the matching tests to the [apiTests.js](cypress/e2e/apiTests/apiTests.js)
 
 ## To run the tests
 
