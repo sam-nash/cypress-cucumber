@@ -44,6 +44,7 @@ c. Create/add your cypress spec/feature implementaion under this folder [example
 2. Add the matching tests to the [cucumber.js](cypress/e2e/cucumber/cucumber.js)
 
 The last is without cucumber
+
 3. The spec for the API tests without using cucumber are in default/*.cy.js
    i. The spec (createAndGetStations.cy.js)[cypress/default/createAndGetStations.cy.js] reads different test data combinations from the fixture file (createStations.js)[cypress/fixtures/createStations.js] & makes a POST request to the api endpoint per each test data request & verifies the response from the api.
    Note : ...that in the fixture file, I have added an attribute called "TestCase" which is the scenario we are testing. This value gets printed on the console/test report so that the user knows what they are testing. 
