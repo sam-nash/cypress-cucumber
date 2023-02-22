@@ -47,18 +47,21 @@ c. Create/add your cypress spec/feature implementaion under this folder [example
 
 The last is without cucumber
 
-3. The spec for the API tests without using cucumber are in default/\*.cy.js
-   i. The spec (createAndGetStations.cy.js)[cypress/default/createAndGetStations.cy.js] reads different test data combinations from the fixture file (createStations.js)[cypress/fixtures/createStations.js] & makes a POST request to the api endpoint per each test data request & verifies the response from the api.
+3. POST and GET (single station) and then GET (all stations) and Delete
 
-   Note : ...that in the fixture file, I have added an attribute called "TestCase" which is the scenario we are testing. This value gets printed on the console/test report so that the user knows what they are testing.
+The spec for the API tests without using cucumber are in default/\*.cy.js
 
-   Before sending this request we destruct the Object to remove this "TestCase" attribute as the API wouldn't recognise the key.
+i. The spec (createAndGetStations.cy.js)[cypress/default/createAndGetStations.cy.js] reads different test data combinations from the fixture file (createStations.js)[cypress/fixtures/createStations.js] & makes a POST request to the api endpoint per each test data request & verifies the response from the api.
 
-   ii. It then extracts the stationId from the POST response and sends a GET request to the api with this 'stationId', verifies the GET response with the POST request that was sent earlier(again we desctruct some of the attributes from the GET response so that we can perform a deep equality of two objects.
+Note : ...that in the fixture file, I have added an attribute called "TestCase" which is the scenario we are testing. This value gets printed on the console/test report so that the user knows what they are testing.
 
-   iii. You may add any other assertions you'd like to verify other values(ex: assert that the response contains all the keys you'd expect).
+Before sending this request we destruct the Object to remove this "TestCase" attribute as the API wouldn't recognise the key.
 
-   iv. If you'd like to tear down/clean up test data that was created from all your tests, the spec (deleteStations.cy.js)[cypress/default/deleteStations.cy.js] makes a get request to retrieve all stations and then makes a delete request one per each station.
+ii. It then extracts the stationId from the POST response and sends a GET request to the api with this 'stationId', verifies the GET response with the POST request that was sent earlier(again we desctruct some of the attributes from the GET response so that we can perform a deep equality of two objects.
+
+iii. You may add any other assertions you'd like to verify other values(ex: assert that the response contains all the keys you'd expect).
+
+iv. If you'd like to tear down/clean up test data that was created from all your tests, the spec (deleteStations.cy.js)[cypress/default/deleteStations.cy.js] makes a get request to retrieve all stations and then makes a delete request one per each station.
 
 #### Secure your passwords/tokens
 
