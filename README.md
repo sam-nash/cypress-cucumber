@@ -42,8 +42,8 @@ c. Create/add your cypress spec/feature implementaion under this folder [example
 
 ##### To add your own scenarios and tests
 
-1. Edit the [feature file](cypress/e2e/cucumber.feature) and edit/add more API test scenarios using the Given, When, Then & And construct.
-2. Add the matching tests to the [cucumber.js](cypress/e2e/cucumber/cucumber.js)
+1. Edit the [feature file](cypress/e2e/stations.feature) and edit/add more API test scenarios using the Given, When, Then & And construct.
+2. Add the matching tests to the [apiTest.js](cypress/e2e/stations/apiTest.js)
 
 The last is without cucumber
 
