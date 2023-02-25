@@ -66,7 +66,6 @@ All the aws sdk code has been referenced from
 
 Read 📚 this [tutorial](https://link.medium.com/ZsRYkUGehxb) to learn how this is done.
 
-
 ## Cypress API Test Samples
 
 Demonstrate how to use Cypress for API Test Automation.

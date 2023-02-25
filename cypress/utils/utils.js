@@ -2,34 +2,20 @@ export const responseObject = (key, value) => {
   response.find((object) => object[key] === value);
 };
 
-export const findThatUser = (iD) => {
-  let expectedData,
-    nextPage,
-    userFound = false;
-  cy.getUsers(nextPage).then((response) => {
-    expectedData = response.body.find((object) => object.id === iD);
-
-    if (expectedData != undefined) {
-      userFound = true;
-      console.log(expectedData);
-
-      return expectedData;
+export function findUser(response, targetId) {
+  let foundId = false;
+  //targetId;
+  const data = response.body;
+  for (const item of data) {
+    if (item.id === targetId) {
+      foundId = true;
+      //responseObject = item;
+      return item;
+      break;
     }
-
-    if (!userFound) {
-      nextPage = response.headers['x-links-next'];
-
-      while (nextPage && !userFound) {
-        cy.getUsers(nextPage).then((nextResponse) => {
-          expectedData = nextResponse.body.find((object) => object.id === iD);
-          if (expectedData != undefined) {
-            userFound = true;
-
-            return expectedData;
-          }
-          nextPage = response.headers['x-links-next'];
-        });
-      }
-    }
-  });
-};
+  }
+  if (!foundId && response.headers["x-links-next"]) {
+    const nextUrl = response.headers["x-links-next"];
+    cy.getUsers(nextUrl).then(findUser);
+  }
+}

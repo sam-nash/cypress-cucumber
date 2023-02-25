@@ -9,6 +9,7 @@ const {
 const { produce, consume } = require("./cypress/utils/kafka");
 
 module.exports = defineConfig({
+  projectId: "cfyhjg",
   chromeWebSecurity: false,
   includeShadowDom: true,
   defaultCommandTimeout: 50000,
