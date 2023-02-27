@@ -8,29 +8,28 @@ describe("Valid User creation tests using POST & verify that the resource is cre
   userCreateRequest.userData.forEach((testData) => {
     //run the code block once per each test data array object
     it(`${testData.TestCase}`, () => {
-      //use the spread operator to assign to apiRequest only the atributes that the api expects
+      //use the spread operator to assign to apiRequest only the request object that the api accepts
       let { TestCase, ExpectedResult, ...apiRequest } = testData;
       cy.log(JSON.stringify(apiRequest)); //print the request for debugging
       //send the api POST request
-      cy.createUser(apiRequest)
+      cy.createUser(apiRequest) //custom cypress command[cypress/support/commands.js] to send the api request
         .then((postResponse) => {
-          //verify the exected response *status* attributes
+          //verify the exected response *status* attributes like code, text, unique Id
           createUserStatus(postResponse);
           //remove the id parameter from the response
           let { id, ...expectedResponse } = postResponse.body;
-          //verify the expected response matches the actual response
-          expect(expectedResponse, "The POST Response body: ").to.deep.equal(
-            apiRequest
+          //verify the expected response api request object) matches the actual response
+          expect(apiRequest, "The POST Response body: ").to.deep.equal(expectedResponse
           );
         })
         .then((postResponse) => {
-          //send the api GET request
+          //send the api GET request using the newly created user id
           cy.getUser(postResponse.body.id).then((getResponse) => {
             //remove the id parameter from the response
             let { id, ...expectedResponse } = getResponse.body;
             //verify the expected response matches the actual response
-            expect(expectedResponse, "The POST Response body: ").to.deep.equal(
-              apiRequest
+            expect(apiRequest, "The POST Response body: ").to.deep.equal(expectedResponse
+              
             );
             expect(postResponse).to.deep.equal(getResponse);
           });
