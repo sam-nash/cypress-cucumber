@@ -19,7 +19,8 @@ describe("Valid User creation tests using POST & verify that the resource is cre
           //remove the id parameter from the response
           let { id, ...expectedResponse } = postResponse.body;
           //verify the expected response api request object) matches the actual response
-          expect(apiRequest, "The POST Response body: ").to.deep.equal(expectedResponse
+          expect(apiRequest, "The POST Response body: ").to.deep.equal(
+            expectedResponse
           );
         })
         .then((postResponse) => {
@@ -28,8 +29,8 @@ describe("Valid User creation tests using POST & verify that the resource is cre
             //remove the id parameter from the response
             let { id, ...expectedResponse } = getResponse.body;
             //verify the expected response matches the actual response
-            expect(apiRequest, "The POST Response body: ").to.deep.equal(expectedResponse
-              
+            expect(apiRequest, "The POST Response body: ").to.deep.equal(
+              expectedResponse
             );
             expect(postResponse).to.deep.equal(getResponse);
           });
