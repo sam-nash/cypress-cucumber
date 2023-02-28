@@ -11,6 +11,11 @@ describe('Valid User update tests using PUT & verify that the resource is update
     { gender: 'female' },
     { status: 'active' },
   ];
+
+  //clean up test data files after tests complete
+  after(() => {
+    cy.writeFile('cypress/fixtures/apiPutData.json', '[]');
+  });
   //We want to test and verify if different keys/values can be updated. Since we have 4 keys : name, gender, email and status..
   //..we will try to send 4 different put requests one for each key
   putData.forEach((item, i) => {
