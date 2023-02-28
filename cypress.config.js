@@ -1,15 +1,15 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 const {
   listObjects,
   putObject,
   getObject,
   delObj,
   delObjs,
-} = require("./cypress/utils/awsServices.js");
-const { produce, consume } = require("./cypress/utils/kafka");
+} = require('./cypress/utils/awsServices.js');
+const { produce, consume } = require('./cypress/utils/kafka');
 
 module.exports = defineConfig({
-  projectId: "cfyhjg",
+  projectId: 'cfyhjg',
   chromeWebSecurity: false,
   includeShadowDom: true,
   defaultCommandTimeout: 50000,
@@ -20,12 +20,12 @@ module.exports = defineConfig({
   failOnStatusCode: false,
   video: false,
   retries: {
-    runMode: 1,
+    runMode: 0,
     openMode: 0,
   },
   e2e: {
     setupNodeEvents(on, config) {
-      on("task", {
+      on('task', {
         listObjects({ bucketName, prefix, delimiter }) {
           return new Promise(async (res, rej) => {
             res(listObjects(bucketName, prefix, delimiter));
@@ -60,8 +60,8 @@ module.exports = defineConfig({
         },
       });
     },
-    baseUrl: "https://automationpractice.com",
-    apiUrl: "https://gorest.co.in/public/v2/",
-    supportFile: "cypress/support/e2e.js",
+    baseUrl: 'https://automationpractice.com',
+    apiUrl: 'https://gorest.co.in/public/v2/',
+    supportFile: 'cypress/support/e2e.js',
   },
 });
