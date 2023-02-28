@@ -25,34 +25,6 @@
     "name": "Cristian",
     "email": "Francesca1@mydearmail.com",
     "gender": "male",
-    "status": "active"
-  },
-  {
-    "id": 682111,
-    "name": "Mabel",
-    "email": "Haleigh1@mydearmail.com",
-    "gender": "male",
-    "status": "active"
-  },
-  {
-    "id": 682112,
-    "name": "Matilde",
-    "email": "Hosea1@mydearmail.com",
-    "gender": "female",
     "status": "inactive"
-  },
-  {
-    "id": 682113,
-    "name": "Reid",
-    "email": "Shaun1@mydearmail.com",
-    "gender": "female",
-    "status": "active"
-  },
-  {
-    "id": 682114,
-    "name": "Dolly",
-    "email": "Eladio1@mydearmail.com",
-    "gender": "male",
-    "status": "active"
   }
 ]

@@ -13,7 +13,7 @@ export const createUser = () => {
         TestCase:
           'Verify that an active male user can be created with valid details',
         name: `${faker.name.firstName()}`,
-        gender: 'male',
+        gender: `${faker.name.sexType()}`,
         email: `${faker.name.firstName()}1@mydearmail.com`,
         status: 'active',
       },
@@ -21,7 +21,7 @@ export const createUser = () => {
         TestCase:
           'Verify that an inactive female user can be created with valid details',
         name: `${faker.name.firstName()}`,
-        gender: 'female',
+        gender: 'male',
         email: `${faker.name.firstName()}1@mydearmail.com`,
         status: 'inactive',
       },
@@ -37,7 +37,7 @@ export const createUser = () => {
         name: `${faker.name.firstName()}`,
         gender: `${faker.name.sexType()}`,
         email: `${faker.name.firstName()}1@mydearmail.com`,
-        status: 'active',
+        status: 'inactive',
       },
     ],
   };
