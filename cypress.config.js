@@ -60,7 +60,7 @@ module.exports = defineConfig({
         },
       });
     },
-    baseUrl: 'https://automationpractice.com',
+    baseUrl: 'https://www.saucedemo.com/',
     apiUrl: 'https://gorest.co.in/public/v2/',
     supportFile: 'cypress/support/e2e.js',
   },
