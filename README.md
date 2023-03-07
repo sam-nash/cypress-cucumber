@@ -51,11 +51,11 @@ The last is without cucumber
 
 The spec for the API tests without using cucumber are in default/\*.cy.js
 
-i. The spec (createAndGetStations.cy.js)[cypress/default/createAndGetStations.cy.js] reads different test data combinations from the fixture file (createStations.js)[cypress/fixtures/createStations.js] & makes a POST request to the api endpoint per each test data request & verifies the response from the api.
+i. The spec [createAndGetStations.cy.js](cypress/default/createAndGetStations.cy.js) reads different test data combinations from the fixture file [createStations.js](cypress/fixtures/createStations.js) & makes a POST request to the api endpoint per each test data request & verifies the response from the api.
 
 Note : ...that in the fixture file, I have added an attribute called "TestCase" which is the scenario we are testing. This value gets printed on the console/test report so that the user knows what they are testing.
 
-Before sending this request we destruct the Object to remove this "TestCase" attribute as the API wouldn't recognise the key.
+Before sending this request we destruct the Object to remove this "TestCase" attribute as the API doesn't expect this key("TestCase").
 
 ii. It then extracts the stationId from the POST response and sends a GET request to the api with this 'stationId', verifies the GET response with the POST request that was sent earlier(again we desctruct some of the attributes from the GET response so that we can perform a deep equality of two objects.
 
