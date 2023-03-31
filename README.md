@@ -74,7 +74,7 @@ Example :
 { "appid": "<your ApiKey goes here>" }
 ```
 
-<b>NOTE</b> : Let this cypress.env.json file be local to your machine & gitignored. It is a best practice to generate this dynamically or store this as an env var in the CI server/read it from there.
+<b>NOTE</b> : Let this cypress.env.json file be local to your machine & gitignored. It is a best practice to generate this dynamically or store this as an environment variable in the CI provider & read from there.
 
 #### Cypress Configuration
 
