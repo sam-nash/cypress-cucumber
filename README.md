@@ -1,5 +1,7 @@
 # Cypress API Tests using Cucumber
 
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/samnash/Cypress-Cucumber%2FExecuteTests?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NjQyMjVhZTg2MmY4NzcwODQxZTgxNGJh.WDAWfCMI9x73Zlu2FNbcD5HS84sqj9_Fa6NvXX3MUpU)]( https://g.codefresh.io/pipelines/edit/new/builds?id=64262bce1952ec70cf8542e7&pipeline=ExecuteTests&projects=Cypress-Cucumber&projectId=642629f7867c8de3fbf99255)
+
 ## Set Up/Install
 
 1. Clone the Repo
